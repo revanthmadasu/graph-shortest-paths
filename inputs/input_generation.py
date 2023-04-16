@@ -6,7 +6,8 @@ def generate_input_dict(num_nodes, directed=True, weighted=True, max_weight=10, 
     
     for i in range(1, num_nodes+1):
         for j in range(i+1, num_nodes+1):
-            if random.random() < 0.3:
+            # higher % of edges for lesser node to fully connect the graph
+            if (random.random() < 0.3 and num_nodes > 15) or (num_nodes < 15 and random.random() < 0.5) or (num_nodes < 5 and random.random() < 0.9):
                 if weighted:
                     weight = random.randint(1, max_weight)
                     if negative_weights:
