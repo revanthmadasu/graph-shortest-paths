@@ -27,13 +27,16 @@ class Logger:
     def logInput(self, input_dict):
         self.dumpIntoFile(input_dict, "input_dict")
 
+    def logBfsOutput(self, bfs_result):
+        self.dumpIntoFile(bfs_result, "bfs_output")
+
     def logDijkstraOutput(self, dijk_result):
         self.dumpIntoFile(dijk_result, "dijkstra_output")
 
     def logBellmanOutput(self, bellman_result):
         self.dumpIntoFile(bellman_result, "bellman_ford_output")
 
-    def logRuntimes(self, dijkstra_result, bellman_result):
+    def logShortestPathRuntimes(self, dijkstra_result, bellman_result):
 
         bellman_time = bellman_result['runtime']
         dijkstra_time = dijkstra_result['runtime']
@@ -44,5 +47,20 @@ class Logger:
         plt.xlabel('Algorithm')
         plt.ylabel('Runtime (seconds)')
         # plt.show()
-        plt.savefig(f'{self.dir_path}/runtimes.png')
+        plt.savefig(f'{self.dir_path}/shortpath_runtimes.png')
+        plt.close()
+
+    def logAllRuntimes(self, bfs_result, dijkstra_result, bellman_result):
+
+        bellman_time = bellman_result['runtime']
+        dijkstra_time = dijkstra_result['runtime']
+        bfs_time = bfs_result['runtime']
+
+        # Generate a comparison chart between the runtimes of Bellman-Ford and Dijkstra algorithms
+        plt.bar(['BFS', 'Bellman-Ford', 'Dijkstra'], [bfs_time, bellman_time, dijkstra_time])
+        plt.title('Comparison of BFS, Bellman-Ford and Dijkstra Runtimes')
+        plt.xlabel('Algorithm')
+        plt.ylabel('Runtime (seconds)')
+        # plt.show()
+        plt.savefig(f'{self.dir_path}/all_runtimes.png')
         plt.close()
