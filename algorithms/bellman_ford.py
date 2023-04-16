@@ -3,7 +3,7 @@ from typing import List, Tuple, Union
 from collections import defaultdict
 import time
 
-def bellman_ford(graph: Graph, source: int) -> Tuple[List[int], List[Union[int, None]]]:
+def bellman_ford(graph: Graph, source = 1) -> Tuple[List[int], List[Union[int, None]]]:
     start_time = time.time()
 
     nodes = graph.get_nodes()

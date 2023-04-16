@@ -1,6 +1,6 @@
 from model.Graph import Graph
 import time
-def dijkstra(graph: Graph, source: int):
+def dijkstra(graph: Graph, source = 1):
 
     start_time = time.time()
 

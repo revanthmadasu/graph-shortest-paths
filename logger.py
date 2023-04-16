@@ -19,6 +19,7 @@ class Logger:
         self.timestamp = ""
         self.dir_path = ""
 
+    # dumps directly json into file
     def dumpIntoFile(self, object, file_name):
         with open(f'{self.dir_path}/{file_name}.txt', "w") as f:
             # write the object to the file as a JSON string
@@ -49,6 +50,19 @@ class Logger:
         # plt.show()
         plt.savefig(f'{self.dir_path}/shortpath_runtimes.png')
         plt.close()
+
+    def logAnalyseRuntimes(self, runtimes, algorithm):
+        # Create a bar chart of runtimes
+        plt.bar(range(len(runtimes)), runtimes)
+
+        # Add labels and title to the chart
+        plt.xlabel('Test case')
+        plt.ylabel('Runtime (seconds)')
+        plt.title('Runtimes for test cases')
+
+        # Save the chart
+        plt.savefig(f'{self.dir_path}/{algorithm}.png')
+
 
     def logAllRuntimes(self, bfs_result, dijkstra_result, bellman_result):
 
