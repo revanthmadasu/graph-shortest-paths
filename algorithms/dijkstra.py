@@ -27,5 +27,5 @@ def dijkstra(graph: Graph, source: int):
                     prev[v] = u
     end_time = time.time()
     run_time = end_time - start_time
-    # print("Dijkstra runtime: ", run_time, "seconds")
+    print("Dijkstra runtime: ", run_time, "seconds")
     return {'dist': dist, 'prev': prev, 'runtime': run_time}

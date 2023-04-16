@@ -31,5 +31,5 @@ def bellman_ford(graph: Graph, source: int) -> Tuple[List[int], List[Union[int, 
     
     end_time = time.time()
     run_time = end_time - start_time
-    # print("Bellman Ford runtime: ", run_time, "seconds")
+    print("Bellman Ford runtime: ", run_time, "seconds")
     return {'distance': distance, 'prev': predecessor, 'runtime': run_time}

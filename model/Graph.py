@@ -7,8 +7,8 @@ class Graph:
         if inputDict:
             self.type = 'undirected' if inputDict['direction'] == 1 else 'directed'
             self.weighted = inputDict['weighted']
-            if self.weighted:
-                self.weightDict = defaultdict(lambda: None)
+            self.weightDict = defaultdict(lambda: None)
+
             # adding nodes
             for i_n in range(1, inputDict['n']+1):
                 self.add_node(i_n)
@@ -17,14 +17,14 @@ class Graph:
                 if self.weighted:
                     v1, v2, w = edge
                     self.connect_nodes(v1, v2, w)
+                # for unweighted graph, default cost would be 1
                 else:
                     v1, v2 = edge
                     self.connect_nodes(v1, v2)
 
     def add_node(self, val) -> None:
         self.nodeDict[val] = []
-        if self.weighted:
-            self.weightDict[val] = defaultdict(lambda: None)
+        self.weightDict[val] = defaultdict(lambda: None)
 
     def add_weight(self, val1, val2, weight):
         self.weightDict[val1][val2] = weight
@@ -32,15 +32,13 @@ class Graph:
             self.weightDict[val2][val1] = weight
 
 
-    def connect_nodes(self, val1, val2, weight=0) -> None:
+    def connect_nodes(self, val1, val2, weight=1) -> None:
         if val2 not in self.nodeDict[val1]:
             self.nodeDict[val1].append(val2)
-            if self.weighted:
-                self.add_weight(val1, val2, weight)
+            self.add_weight(val1, val2, weight)
         if self.type == 'undirected' and val1 not in self.nodeDict[val2]:
             self.nodeDict[val2].append(val1)
-            if self.weighted:
-                self.add_weight(val2, val1, weight)
+            self.add_weight(val2, val1, weight)
 
     def disconnect_nodes(self, val1, val2) -> None:
         if val2 in self.nodeDict[val1]:

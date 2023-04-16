@@ -15,7 +15,7 @@ def main():
     # creating graph
     # get input from command line
     # input_dict = cmd_inputs()
-    input_dict = generate_input_dict(num_nodes=10, directed=False, weighted=True, max_weight=1000, negative_weights= False)
+    input_dict = generate_input_dict(num_nodes=100, directed=False, weighted=True, max_weight=1000, negative_weights= False)
 
     logger.logInput(input_dict)
 
