@@ -19,7 +19,7 @@ def analyseAlgorithm(logger: Logger, alg, displayAlg):
         runtimes.append(runtime)
     logger.logAnalyseRuntimes(runtimes, displayAlg)
 
-def main(algs):
+def main(args):
 
     # Logger to save outputs
     logger = Logger()
@@ -27,8 +27,10 @@ def main(algs):
 
     # creating graph
     # get input from command line
-    # input_dict = cmd_inputs()
-    input_dict = generate_input_dict(num_nodes=500, directed=False, weighted=True, max_weight=1000, negative_weights= False)
+    if 'cmd_input' in args:
+        input_dict = cmd_inputs()
+    else:
+        input_dict = generate_input_dict(num_nodes=500, directed=False, weighted=True, max_weight=1000, negative_weights= False)
 
     logger.logInput(input_dict)
 
@@ -36,34 +38,34 @@ def main(algs):
     visualize_graph(graph, logger)
 
     # bfs traversal
-    if ('bfs' in algs):
+    if ('bfs' in args):
         bfs_res = bfs(graph)
         logger.logBfsOutput(bfs_res)
 
     # dijkstra algorithm
-    if 'dijkstra' in algs:
+    if 'dijkstra' in args:
         dij_res = dijkstra(graph, 1)
         logger.logDijkstraOutput(dij_res)
 
 
     # bellman ford algorithm
-    if 'bellman_ford' in algs:
+    if 'bellman_ford' in args:
         bell_res = bellman_ford(graph, 1)
         logger.logBellmanOutput(bell_res)
 
     # compare runtimes
-    if len(algs) == 3:
+    if len(args) == 3:
         logger.logShortestPathRuntimes(dijkstra_result=dij_res, bellman_result=bell_res)
         logger.logAllRuntimes(bfs_result= bfs_res, dijkstra_result=dij_res, bellman_result=bell_res)
 
     # complete analysis
-    if 'bfs' in algs:
+    if 'bfs' in args:
         analyseAlgorithm(logger, bfs, "bfs")
 
-    if 'dijkstra' in algs:
+    if 'dijkstra' in args:
         analyseAlgorithm(logger, dijkstra, "dijkstra")
 
-    if 'bellman_ford' in algs:
+    if 'bellman_ford' in args:
         analyseAlgorithm(logger, bellman_ford, "bellman ford")
 
     logger.stop()

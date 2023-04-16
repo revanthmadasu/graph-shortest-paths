@@ -8,3 +8,6 @@ To run only bfs - run the main application with command line arg bfs => **python
 To run only dijkstra - run the main application with command line arg dijkstra => **python3 main.py dijkstra**
 
 To run only bellman_ford - run the main application with command line arg bellman_ford => **python3 main.py bellman_ford**
+
+To run with custom command line input - add cmd_input to command as cmd line arg => **python3 main.py cmd_input** or **python3 main.py cmd_input bfs**
+
