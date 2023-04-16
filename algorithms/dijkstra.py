@@ -1,5 +1,9 @@
 from model.Graph import Graph
+import time
 def dijkstra(graph: Graph, source: int):
+
+    start_time = time.time()
+
     Q = set()
     dist = {}
     prev = {}
@@ -21,4 +25,7 @@ def dijkstra(graph: Graph, source: int):
                 if new_dist < dist[v]:
                     dist[v] = new_dist
                     prev[v] = u
-    return dist, prev
+    end_time = time.time()
+    run_time = end_time - start_time
+    # print("Dijkstra runtime: ", run_time, "seconds")
+    return {'dist': dist, 'prev': prev, 'runtime': run_time}

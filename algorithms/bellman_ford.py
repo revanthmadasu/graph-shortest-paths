@@ -1,9 +1,11 @@
 from model.Graph import Graph
 from typing import List, Tuple, Union
 from collections import defaultdict
-
+import time
 
 def bellman_ford(graph: Graph, source: int) -> Tuple[List[int], List[Union[int, None]]]:
+    start_time = time.time()
+
     nodes = graph.get_nodes()
     edges = []
     for node in nodes:
@@ -27,4 +29,7 @@ def bellman_ford(graph: Graph, source: int) -> Tuple[List[int], List[Union[int, 
         if distance[u] + w < distance[v]:
             raise ValueError("Graph contains a negative-weight cycle")
     
-    return [distance, predecessor]
+    end_time = time.time()
+    run_time = end_time - start_time
+    # print("Bellman Ford runtime: ", run_time, "seconds")
+    return {'distance': distance, 'prev': predecessor, 'runtime': run_time}
