@@ -34,6 +34,8 @@ def main():
     bell_res = bellman_ford(graph, 1)
     logger.logBellmanOutput(bell_res)
 
+    # compare runtimes
+    logger.logRuntimes(dijkstra_result=dij_res, bellman_result=bell_res)
     logger.stop()
 
 main()

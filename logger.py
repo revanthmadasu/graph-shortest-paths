@@ -1,6 +1,7 @@
 import os
 import time
 import json
+import matplotlib.pyplot as plt
 class Logger:
     def __init__(self):
         self.output_dir = "outputs"
@@ -31,3 +32,17 @@ class Logger:
 
     def logBellmanOutput(self, bellman_result):
         self.dumpIntoFile(bellman_result, "bellman_ford_output")
+
+    def logRuntimes(self, dijkstra_result, bellman_result):
+
+        bellman_time = bellman_result['runtime']
+        dijkstra_time = dijkstra_result['runtime']
+
+        # Generate a comparison chart between the runtimes of Bellman-Ford and Dijkstra algorithms
+        plt.bar(['Bellman-Ford', 'Dijkstra'], [bellman_time, dijkstra_time])
+        plt.title('Comparison of Bellman-Ford and Dijkstra Runtimes')
+        plt.xlabel('Algorithm')
+        plt.ylabel('Runtime (seconds)')
+        # plt.show()
+        plt.savefig(f'{self.dir_path}/runtimes.png')
+        plt.close()
