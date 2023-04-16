@@ -15,15 +15,16 @@ def main():
     # creating graph
     # get input from command line
     # input_dict = cmd_inputs()
-    input_dict = generate_input_dict(num_nodes=100, directed=False, weighted=True, max_weight=1000, negative_weights= False)
+    input_dict = generate_input_dict(num_nodes=4, directed=False, weighted=True, max_weight=1000, negative_weights= False)
 
     logger.logInput(input_dict)
 
     graph = Graph(input_dict)
-    # visualize_graph(graph)
+    visualize_graph(graph, logger)
 
     # bfs traversal
-    bfs(graph)
+    bfs_res = bfs(graph)
+    logger.logBfsOutput(bfs_res)
 
     # # dijkstra algorithm
     dij_res = dijkstra(graph, 1)
@@ -35,7 +36,8 @@ def main():
     logger.logBellmanOutput(bell_res)
 
     # compare runtimes
-    logger.logRuntimes(dijkstra_result=dij_res, bellman_result=bell_res)
+    logger.logShortestPathRuntimes(dijkstra_result=dij_res, bellman_result=bell_res)
+    logger.logAllRuntimes(bfs_result= bfs_res, dijkstra_result=dij_res, bellman_result=bell_res)
     logger.stop()
 
 main()
